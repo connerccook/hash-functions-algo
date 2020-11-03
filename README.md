@@ -3,5 +3,6 @@ Implement seven hash functions
 
 Group members:
 
-Ada Lovelace adalovelace@csu.fullerton.edu
-Charles Babbage charlesbab@csu.fullerton.edu
+Conner Cook connerccook@csu.fullerton.edu
+
+Peter Le charlesbab@csu.fullerton.edu
