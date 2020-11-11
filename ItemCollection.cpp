@@ -13,6 +13,7 @@ using std::endl;
 unsigned int hashfct1(unsigned int barcode) {
   // TO BE COMPLETED
     unsigned int d;
+    d = barcode / 1000000 % 10;
     return d;
 }
 
@@ -20,6 +21,7 @@ unsigned int hashfct1(unsigned int barcode) {
 unsigned int hashfct2(unsigned int barcode) {
   // TO BE COMPLETED
     unsigned int d;
+    d = barcode / 100000 % 10;
     return d;
 }
 
@@ -27,6 +29,7 @@ unsigned int hashfct2(unsigned int barcode) {
 unsigned int hashfct3(unsigned int barcode) {
   // TO BE COMPLETED
     unsigned int d;
+    d = barcode / 10000 % 10;
     return d;
 }
 
@@ -34,6 +37,7 @@ unsigned int hashfct3(unsigned int barcode) {
 unsigned int hashfct4(unsigned int barcode) {
   // TO BE COMPLETED
     unsigned int d;
+    d = barcode / 1000 % 10;
     return d;
 }
 
@@ -41,6 +45,7 @@ unsigned int hashfct4(unsigned int barcode) {
 unsigned int hashfct5(unsigned int barcode) {
     // TO BE COMPLETED
     unsigned int d;
+    d = barcode / 100 % 10;
     return d;
 }
 
@@ -48,6 +53,7 @@ unsigned int hashfct5(unsigned int barcode) {
 unsigned int hashfct6(unsigned int barcode) {
     // TO BE COMPLETED
     unsigned int d;
+    d = barcode / 10 % 10;
     return d;
 }
 
@@ -55,6 +61,7 @@ unsigned int hashfct6(unsigned int barcode) {
 unsigned int hashfct7(unsigned int barcode) {
     // TO BE COMPLETED
     unsigned int d;
+    d = barcode % 10;
     return d;
 }
 
@@ -89,6 +96,14 @@ void ItemCollection::readTextfile(string filename) {
 void ItemCollection::addItem(string itemColor, string itemShape, string itemBrand, unsigned int barcode) {
   // TO BE COMPLETED
   // function that adds the specified pair of glasses to main display (i.e., to all hash tables)
+  Item glasses(itemColor,itemShape, itemBrand, barcode);
+  hT1.insert({barcode, glasses});
+  hT2.insert({barcode, glasses});
+  hT3.insert({barcode, glasses});
+  hT4.insert({barcode, glasses});
+  hT5.insert({barcode, glasses});
+  hT6.insert({barcode, glasses});
+  hT7.insert({barcode, glasses});
 }
 
 bool ItemCollection::removeItem(unsigned int barcode) {
@@ -96,6 +111,17 @@ bool ItemCollection::removeItem(unsigned int barcode) {
   // function that removes the pair of glasses specified by the barcode from the display
   // if pair is found, then it is removed and the function returns true
   // else returns false
+  if(hT1.find(barcode) == hT1.end()){ //if not found
+    return false;
+  } else {
+    hT1.erase(barcode);
+    hT2.erase(barcode);
+    hT3.erase(barcode);
+    hT4.erase(barcode);
+    hT5.erase(barcode);
+    hT6.erase(barcode);
+    hT7.erase(barcode);
+  }
 
     return true;
 }
@@ -119,7 +145,10 @@ unsigned int ItemCollection::bestHashing() {
     balance[0] = 0;
 
     unsigned int min_loc, max_loc;
-    
+    for (unsigned i=0; i<10; ++i) {
+      
+      
+    }
     return min_loc;
 }
 
