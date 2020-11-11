@@ -1,10 +1,9 @@
 #pragma once
 #include <string>
 #include <unordered_map>
-#include <vector>
 
 using std::string;
-using std::vector;
+
 
 
 //******************************
@@ -88,5 +87,4 @@ public:
 
 private:
   CustomHashTable hT1, hT2, hT3, hT4, hT5, hT6, hT7;
-  // vector<CustomHashTable> allTables{hT1, hT2, hT3, hT4, hT5, hT6, hT7};
 };
