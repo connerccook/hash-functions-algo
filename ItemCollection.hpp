@@ -84,5 +84,7 @@ public:
 
 private:
   CustomHashTable hT1, hT2, hT3, hT4, hT5, hT6, hT7;
-  // add other private member variables as needed
+  // const int length = 7;
+  // CustomHashTable allTables[7] = {hT1, hT2, hT3, hT4, hT5, hT6, hT7};
+  
 };

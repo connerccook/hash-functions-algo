@@ -11,7 +11,6 @@ using std::endl;
 
 // function to return the hash value based on the first digit
 unsigned int hashfct1(unsigned int barcode) {
-  // TO BE COMPLETED
     unsigned int d;
     d = barcode / 1000000 % 10;
     return d;
@@ -19,7 +18,6 @@ unsigned int hashfct1(unsigned int barcode) {
 
 // function to return the hash value based on the second digit
 unsigned int hashfct2(unsigned int barcode) {
-  // TO BE COMPLETED
     unsigned int d;
     d = barcode / 100000 % 10;
     return d;
@@ -27,7 +25,6 @@ unsigned int hashfct2(unsigned int barcode) {
 
 // function to return the hash value based on the third digit
 unsigned int hashfct3(unsigned int barcode) {
-  // TO BE COMPLETED
     unsigned int d;
     d = barcode / 10000 % 10;
     return d;
@@ -35,7 +32,6 @@ unsigned int hashfct3(unsigned int barcode) {
 
 // function to return the hash value based on the fourth digit
 unsigned int hashfct4(unsigned int barcode) {
-  // TO BE COMPLETED
     unsigned int d;
     d = barcode / 1000 % 10;
     return d;
@@ -43,7 +39,6 @@ unsigned int hashfct4(unsigned int barcode) {
 
 // function to return the hash value based on the fifth digit
 unsigned int hashfct5(unsigned int barcode) {
-    // TO BE COMPLETED
     unsigned int d;
     d = barcode / 100 % 10;
     return d;
@@ -51,7 +46,6 @@ unsigned int hashfct5(unsigned int barcode) {
 
 // function to return the hash value based on the fourth digit
 unsigned int hashfct6(unsigned int barcode) {
-    // TO BE COMPLETED
     unsigned int d;
     d = barcode / 10 % 10;
     return d;
@@ -59,7 +53,6 @@ unsigned int hashfct6(unsigned int barcode) {
 
 // function to return the hash value based on the fifth digit
 unsigned int hashfct7(unsigned int barcode) {
-    // TO BE COMPLETED
     unsigned int d;
     d = barcode % 10;
     return d;
@@ -94,8 +87,6 @@ void ItemCollection::readTextfile(string filename) {
 }
 
 void ItemCollection::addItem(string itemColor, string itemShape, string itemBrand, unsigned int barcode) {
-  // TO BE COMPLETED
-  // function that adds the specified pair of glasses to main display (i.e., to all hash tables)
   Item glasses(itemColor,itemShape, itemBrand, barcode);
   hT1.insert({barcode, glasses});
   hT2.insert({barcode, glasses});
@@ -104,13 +95,12 @@ void ItemCollection::addItem(string itemColor, string itemShape, string itemBran
   hT5.insert({barcode, glasses});
   hT6.insert({barcode, glasses});
   hT7.insert({barcode, glasses});
+  // for(unsigned int i=0; i < length; i++){
+  //   allTables[i].insert({barcode,glasses});
+  // }
 }
 
 bool ItemCollection::removeItem(unsigned int barcode) {
-  // TO BE COMPLETED
-  // function that removes the pair of glasses specified by the barcode from the display
-  // if pair is found, then it is removed and the function returns true
-  // else returns false
   if(hT1.find(barcode) == hT1.end()){ //if not found
     return false;
   } else {
@@ -145,10 +135,116 @@ unsigned int ItemCollection::bestHashing() {
     balance[0] = 0;
 
     unsigned int min_loc, max_loc;
-    for (unsigned i=0; i<10; ++i) {
-      
-      
+    for(unsigned i=0; i < 10; i++){
+      if(i == 0){
+        min_loc = hT1.bucket_size(i);
+        max_loc = hT1.bucket_size(i);
+      } else {
+        if(hT1.bucket_size(i) < min_loc){
+          min_loc = hT1.bucket_size(i);
+        }
+        if(hT1.bucket_size(i) > max_loc){
+          max_loc = hT1.bucket_size(i);
+        }
+      }
     }
+    balance[1] = max_loc - min_loc;
+
+    for(unsigned i=0; i < 10; i++){
+      if(i == 0){
+        min_loc = hT2.bucket_size(i);
+        max_loc = hT2.bucket_size(i);
+      } else {
+        if(hT2.bucket_size(i) < min_loc){
+          min_loc = hT2.bucket_size(i);
+        }
+        if(hT2.bucket_size(i) > max_loc){
+          max_loc = hT2.bucket_size(i);
+        }
+      }
+    }
+    balance[2] = max_loc - min_loc;
+
+    for(unsigned i=0; i < 10; i++){
+      if(i == 0){
+        min_loc = hT3.bucket_size(i);
+        max_loc = hT3.bucket_size(i);
+      } else {
+        if(hT3.bucket_size(i) < min_loc){
+          min_loc = hT3.bucket_size(i);
+        }
+        if(hT3.bucket_size(i) > max_loc){
+          max_loc = hT3.bucket_size(i);
+        }
+      }
+    }
+    balance[3] = max_loc - min_loc;
+
+    for(unsigned i=0; i < 10; i++){
+      if(i == 0){
+        min_loc = hT4.bucket_size(i);
+        max_loc = hT4.bucket_size(i);
+      } else {
+        if(hT4.bucket_size(i) < min_loc){
+          min_loc = hT4.bucket_size(i);
+        }
+        if(hT4.bucket_size(i) > max_loc){
+          max_loc = hT4.bucket_size(i);
+        }
+      }
+    }
+    balance[4] = max_loc - min_loc;
+
+    for(unsigned i=0; i < 10; i++){
+      if(i == 0){
+        min_loc = hT5.bucket_size(i);
+        max_loc = hT5.bucket_size(i);
+      } else {
+        if(hT5.bucket_size(i) < min_loc){
+          min_loc = hT5.bucket_size(i);
+        }
+        if(hT5.bucket_size(i) > max_loc){
+          max_loc = hT5.bucket_size(i);
+        }
+      }
+    }
+    balance[5] = max_loc - min_loc;
+    for(unsigned i=0; i < 10; i++){
+      if(i == 0){
+        min_loc = hT6.bucket_size(i);
+        max_loc = hT6.bucket_size(i);
+      } else {
+        if(hT6.bucket_size(i) < min_loc){
+          min_loc = hT6.bucket_size(i);
+        }
+        if(hT6.bucket_size(i) > max_loc){
+          max_loc = hT6.bucket_size(i);
+        }
+      }
+    }
+    balance[6] = max_loc - min_loc;
+
+    for(unsigned i=0; i < 10; i++){
+      if(i == 0){
+        min_loc = hT7.bucket_size(i);
+        max_loc = hT7.bucket_size(i);
+      } else {
+        if(hT7.bucket_size(i) < min_loc){
+          min_loc = hT7.bucket_size(i);
+        }
+        if(hT7.bucket_size(i) > max_loc){
+          max_loc = hT7.bucket_size(i);
+        }
+      }
+    }
+    balance[7] = max_loc - min_loc;
+    min_loc = balance[1];
+    for(unsigned int i = 2; i < 8; i++){
+      if(balance[i] < min_loc){
+        min_loc = balance[i];
+      }
+    }
+    cout << endl << min_loc << endl;
     return min_loc;
 }
 
