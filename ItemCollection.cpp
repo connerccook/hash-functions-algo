@@ -88,6 +88,13 @@ void ItemCollection::readTextfile(string filename) {
 
 void ItemCollection::addItem(string itemColor, string itemShape, string itemBrand, unsigned int barcode) {
   Item glasses(itemColor,itemShape, itemBrand, barcode);
+  // allTables[0].insert({barcode, glasses});
+  // allTables[1].insert({barcode, glasses});
+  // allTables[2].insert({barcode, glasses});
+  // allTables[3].insert({barcode, glasses});
+  // allTables[4].insert({barcode, glasses});
+  // allTables[5].insert({barcode, glasses});
+  // allTables[6].insert({barcode, glasses});
   hT1.insert({barcode, glasses});
   hT2.insert({barcode, glasses});
   hT3.insert({barcode, glasses});
@@ -133,8 +140,86 @@ unsigned int ItemCollection::bestHashing() {
 
     unsigned int balance[8];
     balance[0] = 0;
-
+    
     unsigned int min_loc, max_loc;
+
+    // min_loc = hT1.bucket_size(0);
+    // max_loc = hT1.bucket_size(0);
+    // for(unsigned int i=1; i < 10; i++){
+    //   if(hT1.bucket_size(i) < min_loc){
+    //     min_loc = hT1.bucket_size(i);
+    //   }
+    //   if(hT1.bucket_size(i) > max_loc){
+    //     max_loc = hT1.bucket_size(i);
+    //   }
+    // }
+    // balance[1] = max_loc - min_loc; 
+    // min_loc = hT2.bucket_size(0);
+    // max_loc = hT2.bucket_size(0);
+    // for(unsigned int i=1; i < 10; i++){
+    //   if(hT2.bucket_size(i) < min_loc){
+    //     min_loc = hT2.bucket_size(i);
+    //   }
+    //   if(hT2.bucket_size(i) > max_loc){
+    //     max_loc = hT2.bucket_size(i);
+    //   }
+    // }
+    // balance[2] = max_loc - min_loc; 
+    // min_loc = hT3.bucket_size(0);
+    // max_loc = hT3.bucket_size(0);
+    // for(unsigned int i=1; i < 10; i++){
+    //   if(hT3.bucket_size(i) < min_loc){
+    //     min_loc = hT3.bucket_size(i);
+    //   }
+    //   if(hT3.bucket_size(i) > max_loc){
+    //     max_loc = hT3.bucket_size(i);
+    //   }
+    // }
+    // balance[3] = max_loc - min_loc; 
+    // min_loc = hT4.bucket_size(0);
+    // max_loc = hT4.bucket_size(0);
+    // for(unsigned int i=1; i < 10; i++){
+    //   if(hT4.bucket_size(i) < min_loc){
+    //     min_loc = hT4.bucket_size(i);
+    //   }
+    //   if(hT4.bucket_size(i) > max_loc){
+    //     max_loc = hT4.bucket_size(i);
+    //   }
+    // }
+    // balance[4] = max_loc - min_loc; 
+    // min_loc = hT5.bucket_size(0);
+    // max_loc = hT5.bucket_size(0);
+    // for(unsigned int i=1; i < 10; i++){
+    //   if(hT5.bucket_size(i) < min_loc){
+    //     min_loc = hT5.bucket_size(i);
+    //   }
+    //   if(hT5.bucket_size(i) > max_loc){
+    //     max_loc = hT5.bucket_size(i);
+    //   }
+    // }
+    // balance[5] = max_loc - min_loc; 
+    // min_loc = hT6.bucket_size(0);
+    // max_loc = hT6.bucket_size(0);
+    // for(unsigned int i=1; i < 10; i++){
+    //   if(hT6.bucket_size(i) < min_loc){
+    //     min_loc = hT6.bucket_size(i);
+    //   }
+    //   if(hT6.bucket_size(i) > max_loc){
+    //     max_loc = hT6.bucket_size(i);
+    //   }
+    // }
+    // balance[6] = max_loc - min_loc; 
+    // min_loc = hT7.bucket_size(0);
+    // max_loc = hT7.bucket_size(0);
+    // for(unsigned int i=1; i < 10; i++){
+    //   if(hT7.bucket_size(i) < min_loc){
+    //     min_loc = hT7.bucket_size(i);
+    //   }
+    //   if(hT7.bucket_size(i) > max_loc){
+    //     max_loc = hT7.bucket_size(i);
+    //   }
+    // }
+    // balance[7] = max_loc - min_loc; 
     for(unsigned i=0; i < 10; i++){
       if(i == 0){
         min_loc = hT1.bucket_size(i);
@@ -238,13 +323,14 @@ unsigned int ItemCollection::bestHashing() {
       }
     }
     balance[7] = max_loc - min_loc;
-    min_loc = balance[1];
+    min_loc = 1;
+    unsigned iterator = balance[1];
     for(unsigned int i = 2; i < 8; i++){
-      if(balance[i] < min_loc){
-        min_loc = balance[i];
+      if(balance[i] < iterator){
+        iterator = balance[i];
+        min_loc = i;
       }
     }
-    cout << endl << min_loc << endl;
     return min_loc;
 }
 
