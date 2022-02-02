@@ -1,5 +1,5 @@
 # Project-3-hash-functions
-Implement seven hash functions
+A project to practice hashing. 
 
 Group members:
 
